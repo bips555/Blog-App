@@ -5,10 +5,11 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { signInStart,signInSuccess,signInFailure } from '../app/user/userSlice.js';
 import { useDispatch,useSelector } from 'react-redux';
+import Oauth from '../Components/Oauth.jsx';
 const SignIn = () => {
   const [formData, setFormData] = useState({});
  const {loading,error:errorMessage}=useSelector(state=>state.user)
-  const dispatch = useDispatch()
+   const dispatch = useDispatch()
   const navigate = useNavigate()
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
@@ -89,6 +90,7 @@ const SignIn = () => {
                 "Sign in"
               )}
             </Button>
+            <Oauth/>
           </form>
           <div className="flex gap-2 text-sm mt-5">
             <span>Don't Have an account?</span>

@@ -17,6 +17,11 @@ const userSchema = new mongoose.Schema(
 
       required: true,
     },
+    profilePicture:
+    {
+      type:String,
+      default:"https://static.vecteezy.com/system/resources/previews/027/448/973/original/avatar-account-icon-default-social-media-profile-photo-vector.jpg"
+    }
   },
   { timestamps: true }
 );
