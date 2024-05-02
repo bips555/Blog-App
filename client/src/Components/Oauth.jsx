@@ -14,10 +14,13 @@ const Oauth = () => {
   
     const auth = getAuth(app)
     const provider = new GoogleAuthProvider();
-    provider.getCustomParameters({prompt:'select_account'})
+    provider.getCustomParameters({ prompt: 'select_account' });
+
     try
     {
-        const resultFromGoogle = await signInWithPopup(auth,provider)
+      const resultFromGoogle = await signInWithPopup(auth, provider);
+      console.log(resultFromGoogle)
+
         const res = await fetch ('/api/auth/google',
     {
         method:'POST',
@@ -28,6 +31,7 @@ const Oauth = () => {
             googlePhotoUrl:resultFromGoogle.user.photoURL
         })
     })
+    console.log(res)
     const data = await res.json()
     if(res.ok)
     {
