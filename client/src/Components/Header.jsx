@@ -2,10 +2,15 @@ import { Avatar, Button, Dropdown, Navbar, TextInput } from "flowbite-react";
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { AiOutlineSearch } from "react-icons/ai";
-import { FaMoon } from "react-icons/fa";
-import { useSelector } from "react-redux";
+import { FaMoon, FaSun } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleTheme } from "../app/Theme/themeSlice.js";
+
 const Header = () => {
   const path = useLocation().pathname;
+  const dispath = useDispatch()
+  const {theme} = useSelector(state=>state.theme)
+
   const { currentUser } = useSelector((state) => state.user);
   return (
     <>
@@ -38,9 +43,11 @@ const Header = () => {
           <Button
             className=" w-10 h-10 flex items-center justify-center"
             color="gray"
+            onClick={()=>dispath(toggleTheme())}
             pill
           >
-            <FaMoon />
+            {theme ===  'light' ? (<FaSun />):(<FaMoon/>)
+            }
           </Button>
           {currentUser ? (
             <>
