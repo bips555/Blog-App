@@ -9,7 +9,8 @@ const SignUp = () => {
   const [loading, SetLoading] = useState(false);
   const navigate = useNavigate()
   const handleChange = (e) => {
-    SetLoading(false);
+   setErrorMessage(null)
+   SetLoading(false)
     setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
   };
   const handleSubmit = async (e) => {
@@ -24,8 +25,6 @@ const SignUp = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
-
-      
       }
     );
       const data = await res.json();
@@ -35,11 +34,14 @@ const SignUp = () => {
       SetLoading(false);
       if(res.ok)
       {
-        return navigate('/sign-in')
+         navigate('/sign-in')
       }
     } catch (error) {
-      setErrorMessage(error.message);
-      SetLoading(false);
+    
+    SetLoading(false);
+    setErrorMessage(error.message);
+    
+      
     }
   };
   return (

@@ -17,7 +17,14 @@ export const signup = async (req, res, next) => {
   ) {
     next(errorHandler(400, "All Fields are Required"))
   }
+
   try {
+    
+    const existingUser = await UserModel.findOne({ $or: [{ email }, { username }] });
+
+    if (existingUser) {
+      return next(errorHandler(404, 'User already exists'));
+    }
     const hashedPassword = bcryptjs.hashSync(password, 10)
 
     const newUser = new UserModel({

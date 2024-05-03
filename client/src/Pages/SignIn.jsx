@@ -15,7 +15,7 @@ const SignIn = () => {
     setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
   };
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     if (!formData.email || !formData.password) {
       return dispatch(signInFailure("Please fill out all the fields."))
     }
@@ -34,7 +34,7 @@ const SignIn = () => {
       if(res.ok)
       {
         dispatch(signInSuccess(data))
-        return navigate('/')
+         navigate('/')
       }
     } catch (error) {
       dispatch(signInFailure(error.message))
