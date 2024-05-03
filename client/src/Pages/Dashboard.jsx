@@ -9,7 +9,7 @@ const [tab,setTab]=useState()
 useEffect(()=>
 {
   const urlParams = new URLSearchParams(location.search)
-  console.log(urlParams)
+ 
   const tabFromUrl = urlParams.get('tab')
   if(tabFromUrl)
   {
