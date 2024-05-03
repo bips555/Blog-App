@@ -15,7 +15,7 @@ import {
   updateFailure,
   updateStart,
   updateSuccess,
-  deleteUserFailure,deleteUserStart,deleteUserSuccess
+  deleteUserFailure,deleteUserStart,deleteUserSuccess,signoutSuccess
 } from "../app/user/userSlice.js";
 import { useDispatch } from "react-redux";
 export default function DashProfile() {
@@ -145,7 +145,29 @@ if(!res.ok)
 dispatch(deleteUserFailure(error.message))
     }
   }
+ const handleSignOut =  async () =>
+{
+  try{
+const res= await fetch(`/api/user/signout`,
+{
+  method:'POST'
+})
+const data = await res.json()
 
+if(!res.ok)
+{
+  console.log(data.message)
+}
+else
+{
+dispatch(signoutSuccess())
+}
+  }
+  catch(error)
+  {
+
+  }
+}
  
   return (
     <div className="max-w-lg mx-auto p-3 w-full">
@@ -222,7 +244,7 @@ dispatch(deleteUserFailure(error.message))
 
       <div className="text-red-500 flex justify-between mt-5">
         <span className="cursor-pointer" onClick={()=>setShowModal(true)}>Delete Account</span>
-        <span className="cursor-pointer">Sign Out</span>
+        <span className="cursor-pointer" onClick={handleSignOut}>Sign Out</span>
       </div>
       {updateUserSuccess && (
         <Alert color="success" className="mt-5">

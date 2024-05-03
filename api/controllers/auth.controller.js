@@ -19,7 +19,7 @@ export const signup = async (req, res, next) => {
   }
 
   try {
-    
+
     const existingUser = await UserModel.findOne({ $or: [{ email }, { username }] });
 
     if (existingUser) {
