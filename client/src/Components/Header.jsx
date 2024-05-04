@@ -66,7 +66,7 @@ dispatch(signoutSuccess())
           <Button
             className=" w-10 h-10 flex items-center justify-center"
             color="gray"
-            onClick={()=>dispath(toggleTheme())}
+            onClick={()=>dispatch(toggleTheme())}
             pill
           >
             {theme ===  'light' ? (<FaSun />):(<FaMoon/>)
