@@ -1,6 +1,6 @@
 import React from "react";
 import { Sidebar } from "flowbite-react";
-import { HiUser, HiArrowSmRight, HiDocumentText } from "react-icons/hi";
+import { HiUser, HiArrowSmRight, HiDocumentText, HiOutlineUserGroup } from "react-icons/hi";
 import { useEffect, useState } from "react";
 import { useLocation,Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -59,6 +59,17 @@ dispatch(signoutSuccess())
             as='div'
             icon={HiDocumentText}>
               Posts
+            </Sidebar.Item>
+          </Link>
+          }
+          {
+            currentUser.isAdmin &&    <Link to='/dashboard/?tab=users'>
+            <Sidebar.Item 
+            active={tab === 'users'}
+            className='mt-1'
+            as='div'
+            icon={HiOutlineUserGroup}>
+              Users
             </Sidebar.Item>
           </Link>
           }
