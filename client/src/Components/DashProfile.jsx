@@ -86,6 +86,7 @@ export default function DashProfile() {
   };
 
   const handleChange = (e) => {
+    
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
@@ -111,16 +112,20 @@ export default function DashProfile() {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
+      
       if (!res.ok) {
-        setUpdateUserError(data.message);
         dispatch(updateFailure(data.message));
+        setUpdateUserError(data.message);
+        dispatch(updateFailure());
+        
       } else {
         setUpdateUserSuccess("User's profile updated successfully");
         dispatch(updateSuccess(data));
       }
     } catch (error) {
-      dispatch(updateFailure());
+      dispatch(updateFailure(error.message));
       setUpdateUserError(error.message);
+      dispatch(updateFailure());
     }
   };
 
@@ -229,7 +234,7 @@ export default function DashProfile() {
           disabled={imageFileUploading || loading}
           gradientDuoTone={"purpleToBlue"}
         >
-          {loading ? <Spinner>Loading..</Spinner> : "Update"}
+          {loading ? (<Spinner>Loading..</Spinner>) : ("Update")}
         </Button>
         {currentUser.isAdmin && (
           <Link to={"/create-post"}>
