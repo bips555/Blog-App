@@ -1,7 +1,12 @@
 import { Button } from 'flowbite-react';
-import { Link } from 'react-router-dom';
+
 
 export default function CallToAction() {
+   
+    const goto=()=>
+        {
+            window.open('https://github.com/bips555', '_blank');
+        }
   return (
     <div className='flex flex-col sm:flex-row p-3 border border-teal-500 justify-center items-center rounded-tl-3xl rounded-br-3xl text-center'>
         <div className="flex-1 justify-center flex flex-col">
@@ -11,10 +16,10 @@ export default function CallToAction() {
             <p className='text-gray-500 my-2'>
                 Checkout these Projects I have made using various javascript frameoworks and libraries
             </p>
-            <Button gradientDuoTone='purpleToPink' className='rounded-tl-xl rounded-bl-none'>
-                <Link to="/projects">
-                    Projects
-                </Link>
+            <Button gradientDuoTone='purpleToPink' 
+            onClick={goto}
+            className='rounded-tl-xl rounded-bl-none'>
+              Projects
             </Button>
         </div>
         <div className="p-7 flex-1">
