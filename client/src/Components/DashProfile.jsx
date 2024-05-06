@@ -112,11 +112,11 @@ export default function DashProfile() {
       });
       const data = await res.json();
       if (!res.ok) {
-        dispatch(updateFailure(data.message));
         setUpdateUserError(data.message);
+        dispatch(updateFailure(data.message));
       } else {
-        dispatch(updateSuccess(data));
         setUpdateUserSuccess("User's profile updated successfully");
+        dispatch(updateSuccess(data));
       }
     } catch (error) {
       dispatch(updateFailure());
@@ -224,20 +224,24 @@ export default function DashProfile() {
           defaultValue="*******"
           onChange={handleChange}
         />
-       <Button type="submit" disabled={imageFileUploading || loading} gradientDuoTone={"purpleToBlue"}>
-          {loading ? <Spinner>Loading..</Spinner> : 'Update'}
+        <Button
+          type="submit"
+          disabled={imageFileUploading || loading}
+          gradientDuoTone={"purpleToBlue"}
+        >
+          {loading ? <Spinner>Loading..</Spinner> : "Update"}
         </Button>
         {currentUser.isAdmin && (
-          <Link to={'/create-post'}>
-           <Button
-            type="button"
-            gradientDuoTone='purpleToPink'
-            outline
-            className="w-full"
-          >
-           Create a Post
-          </Button></Link>
-         
+          <Link to={"/create-post"}>
+            <Button
+              type="button"
+              gradientDuoTone="purpleToPink"
+              outline
+              className="w-full"
+            >
+              Create a Post
+            </Button>
+          </Link>
         )}
       </form>
 
